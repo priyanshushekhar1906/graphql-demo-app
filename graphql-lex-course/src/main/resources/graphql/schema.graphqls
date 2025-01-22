@@ -1,0 +1,40 @@
+
+type Query{
+    employees: [Employee]
+    employeeById(eid: ID!): Employee
+    companies: [Company]
+    companyById(cid: ID!): Company
+}
+
+input CompEmp{
+    compId: Int!
+    empId: Int!
+}
+
+
+type Mutation{
+    addCompany(name:String! description: String!): Company!
+    addEmployee(firstName: String! lastName: String jobLevel: Int!): Employee!
+    mapCompEmp(input: CompEmp): Employee!
+    unMapCompEmp(input: CompEmp): Employee!
+}
+
+type Subscription{
+    allCompanies: [Company]
+}
+
+type Employee{
+    eid : ID!
+    firstName: String
+    lastName: String
+    jobLevel: Int
+    company: Company
+
+}
+
+type Company{
+    cid: ID!
+    name: String
+    description: String,
+    employees: [Employee]
+}
